@@ -1,5 +1,5 @@
 # SkillMock
-This is and online Quiz portal
+This is an online Quiz portal
 ## Project Description :
 This is a online Quiz portal.User can login to avail the test and they have view the performance of all the test and their test details.
 Test is a time based system.Admin can create,update and delete test details and view all user avail the test or login into portal.
