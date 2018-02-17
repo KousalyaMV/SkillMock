@@ -1,0 +1,16 @@
+
+<div class="container login-container" ng-controller="homeCtrl as home">
+  <div class="panel">
+    <div class="panel-body">
+      <form ng-submit="home.forgotPassword()">
+        <legend>Forgot Password</legend>
+        <div class="form-group">
+          <p>Enter your Email Address to reset password</p>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email" class="form-control" ng-model="home.email" autofocus>
+        </div>
+        <button type="submit" class="btn btn-success">Recovery Email</button>
+      </form>
+    </div>
+  </div>
+</div>

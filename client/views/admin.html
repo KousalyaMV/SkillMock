@@ -1,0 +1,249 @@
+<style>
+.well {
+    color: blue;
+   background-color: #E8F8F5;
+}
+img {
+    height: 750px;
+    width: 750px;
+}
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    margin-right:-4px;
+}
+</style>
+
+<div class="container" ng-controller="adminCtrl as admin">
+   <div class="container" id="btnBack">
+              <div class="row">
+              <div  class= "col-md-4" align="left" >
+              <a   class="btn btn-warning center-block" style="width:60%" ng-href="#/Admin/{{admin.userId}}"><h6><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back To Dashboard</h6></a>
+              </div>
+              </div>
+              </div>
+              <br/>
+<div class="row" id="dashAdmin">
+<div class="col-md-12">
+  <div class="panel-group">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h2 align="center">Hello Admin ...Welcome to Skill Mock..</h2>
+          </div>
+          <br/>
+          <div class="panel-body">
+            <div class="col-md-12" align="center">
+              <button class="btn btn-primary" id="btnCreate">Create Test</button>
+
+              <!-- <button class="btn btn-info" id="btnViewTest" data-toggle="modal" data-target="#myModal2">View Test</button> -->
+            </div>
+              <br/>
+              <br/>
+              <br/>
+             <div class="row">
+            <div class="col-md-6">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+            <h1 class="panel-title" align="center">Test Details</h1>
+            </div><!-- panel header end -->
+            <div class="panel-body">
+           <p> <img align="center" src="img/UserTest.png" class="img-responsive" alt="Responsive image"#/></p>
+            </div><!-- panel body end -->
+            <div class="panel-footer" align="center">
+            <a class="btn btn-primary" id="btnViewTest">View Test Info</a>
+            </div> <!-- panel footer end -->
+            </div><!-- panel close-->
+            </div>
+
+             <div class="col-md-6">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+            <h1 class="panel-title" align="center">User Details</h1>
+            </div><!-- panel header end -->
+            <div class="panel-body">
+           <img align="center" src="img/UserInfo.png" class="img-responsive" alt="Responsive image" style="height:51vh">
+            </div><!-- panel body end -->
+            <div class="panel-footer" align="center">
+            <a class="btn btn-primary" id="btnUserInfo" ng-href="#/AllUserInfo/{{admin.userId}}">View User Info</a>
+            </div> <!-- panel footer end -->
+            </div><!-- panel close-->
+            </div>
+          </div>
+          <br/>
+          <div class="row row-centered">
+             <div class="col-md-6 col-centered">
+            <div class="panel panel-primary" align="center">
+            <div class="panel-heading">
+            <h1 class="panel-title" align="center">User Performance</h1>
+            </div><!-- panel header end -->
+            <div class="panel-body">
+            <img align="center" src="img/UserKnowlege.jpg" class="img-responsive" alt="Responsive image">
+            </div><!-- panel body end -->
+            <div class="panel-footer" align="center">
+            <a class="btn btn-primary" id="btnUserPerformance" ng-href="#/AllUserTestInfo/{{admin.userId}}">View User Performance</a>
+            </div> <!-- panel footer end -->
+            </div><!-- panel close-->
+            </div>
+
+            </div><!-- row end -->
+
+
+          </div>
+          <!-- panel body end -->
+      </div>
+      <!-- panel  end -->
+    </div> <!--panel  group  end-->
+      
+  </div>
+  <!-- Col class -->
+</div>
+<!-- row end -->
+
+<div class="row row-centered">
+  
+  <div class="col-md-8 col-centered">
+    <div class="well well-lg" id="createTest">
+       <form ng-submit="admin.createATest()">
+              <div class="form-group">
+                <label name="testId" ng-model="admin.testId"></label>
+                  <legend><h5>Test Name</h5></legend>
+                  <input type="text" name="testName" id="testName" ng-model="admin.testName" class="form-control" placeholder="Please enter the Test Name..." required="true" autofocus="true">
+              </div>
+                  <legend><h5>Test Category</h5></legend>
+              <div class="form-group">
+                  <input type="text" name="testCategory" id="testCategory" ng-model="admin.testCategory" class="form-control" placeholder="Please Enter Test Category..." required="true">
+              </div>
+                  <legend><h5>Test Description</h5></legend>
+              <div class="form-group">
+                  <input type="text" name="testDetails" id="testDetails"  ng-model="admin.testDetails" class="form-control" placeholder="Please Enter Test Details..." required="true">
+              </div>
+                  <legend><h5>Total Score</h5></legend>
+              <div class="form-group">
+                  <input type="number" name="totalScore" ng-model="admin.totalScore" class="form-control" placeholder="Please Enter Total Score..." required="true">
+              </div>
+                  <legend><h5>Test Duration(In Seconds)</h5></legend>
+              <div class="form-group">
+                  <input type="number" name="testDuration" id="testDuration" ng-model="admin.testDuration" class="form-control" placeholder="Please Enter Test Duration..." required="true">
+              </div>
+              
+              <div class="form-group" id="createATest">
+                  <Button type="submit" tabindex="6" class="form-control btn btn-active btn-info center-block">Submit</Button>
+              </div>
+          </form>
+      </div>
+      <!-- well end -->
+      <div class="well well-lg" id="updateTest">
+          <form ng-submit="admin.updateATest()">
+              <div class="form-group">
+                <label name="testId" ng-model="admin.testId"></label>
+                  <legend><h5>Test Name</h5></legend>
+                  <input type="text" name="testName" id="testName" ng-model="admin.testName" class="form-control" placeholder="Please enter the Test Name..." required="true" autofocus="true">
+              </div>
+                  <legend><h5>Test Category</h5></legend>
+              <div class="form-group">
+                  <input type="text" name="testCategory" id="testCategory" ng-model="admin.testCategory" class="form-control" placeholder="Please Enter Test Category..." required="true">
+              </div>
+                  <legend><h5>Test Description</h5></legend>
+              <div class="form-group">
+                  <input type="text" name="testDetails" id="testDetails"  ng-model="admin.testDetails" class="form-control" placeholder="Please Enter Test Details..." required="true">
+              </div>
+                  <legend><h5>Total Score</h5></legend>
+              <div class="form-group">
+                  <input type="number" name="totalScore" ng-model="admin.totalScore" class="form-control" placeholder="Please Enter Total Score..." required="true">
+              </div>
+                  <legend><h5>Test Duration(In Seconds)</h5></legend>
+              <div class="form-group">
+                  <input type="number" name="testDuration" id="testDuration" ng-model="admin.testDuration" class="form-control" placeholder="Please Enter Test Duration..." required="true">
+              </div>
+              <div class="form-group" id="updateATest">
+                  <Button type="submit" class="form-control btn btn-active btn-warning center-block">Update</Button>
+              </div>
+          </form>
+      </div>
+      <!-- well end -->
+  </div><!-- col end -->
+</div><!-- row end -->
+
+<div class="row" id="viewTest" ng-init="admin.getTests()">
+ <div class="col-md-5"  ng-repeat="test in admin.testArray track by $index">
+  <div class="panel panel-primary">
+      <div class="panel-heading clearfix" align="center">
+          <h1  align="center">{{test.testName}}</h1>
+          <hr> 
+          <button class="btn btn-info"  ng-click="admin.getSingleTest(test._id)" data-id="{{test._id}}" data-toggle="modal" data-target="#myModal2">View Test</button>
+      <button class="btn btn-warning" id="btnUpdateTest" ng-click="admin.getSingleTestDetUpdate(test._id)">Update Test</button>
+      <button type="button" class="btn btn-danger pull-center" id="btnDeleteTest" ng-click="admin.deleteATest(test._id)" data-id="{{test._id}}">Delete Test</button>
+      </div><!-- panel header end -->
+      <div class="panel-body">
+          <img align="center" src="img/TestInfo.jpg" style="height:40vh" class="img-fluid img-responsive" alt="Responsive image" />
+      </div><!-- panel body end -->
+     <div class="panel-footer clearfix">      
+          <h5 align="center"> <a class="btn btn-primary   pull-center" id="btnQuestion" ng-href="#/Admin/QuestionInfo/{{admin.userId}}/{{test._id}}/{{test.testName}}">View Question Info</a></h5>
+         </div> <!-- panel footer end -->
+   </div><!-- panel close-->
+ </div>
+</div><!-- row end -->
+
+<!--  <div>
+      <Button  tabindex="7" class="btn btn-danger center-block" id="btnBack">Back</Button>
+          </div> -->
+
+<!-- Modal for getting All Tests -->
+<div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 align="center" class="modal-title">Test Info</h4>
+                    </div>
+                    <div style="background-color:#A4B5D2;" class="modal-body">
+                            <label class=" list-group-item"><h4>Test Name: {{admin.singleTestArray.testName}}</h4></label>
+                            <label class=" list-group-item"><h4>Test Details: {{admin.singleTestArray.testDetails}}</h4></label>
+                            <label class=" list-group-item"><h4>Total Score: {{admin.singleTestArray.totalScore}}</h4></label>
+                            <label class=" list-group-item"><h4>Test Duration: {{admin.singleTestArray.testDuration}}</h4></label>
+                            <label class=" list-group-item"><h4>Test Category: {{admin.singleTestArray.testCategory}}</h4></label>
+                            <label class=" list-group-item"><h4>Total Questions: {{admin.singleTestArray.totalQuestions}}</h4></label>
+          </div>
+         
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div><!-- modal -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#createTest').hide();
+      $('#updateTest').hide();
+       $('#btnBack').hide();
+       $('#viewTest').hide();
+      $('#btnCreate').click(function(){
+         $('#createTest').show();
+          $('#dashAdmin').hide();
+         $('#btnBack').show();
+         $('#testName').prop('disabled', false);  
+         $('#updateATest').hide();
+          $('#createATest').show();
+          $('.form-control').val('');
+      });
+  
+      $('#btnBack').click(function(){
+         $('#createTest').hide();
+         $('#dashAdmin').show();
+          $('#viewTest').hide();
+         $('#btnBack').hide(); 
+           $('#updateTest').hide(); 
+    });
+ $('#btnViewTest').click(function(){
+         $('#viewTest').show();
+         $('#dashAdmin').hide();
+         $('#btnBack').show();
+      });
+});
+</script> 

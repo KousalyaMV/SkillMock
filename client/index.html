@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SkillMock">
+<head>
+  <base href="/">
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>SkillMock</title><link rel="icon" href="img/logo.png" type="image/png">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+    <!--font Awesome Icons  -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body ng-controller="homeCtrl as home">
+ <nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#/"><h4 style="color: white"><i class="fa fa-medium" aria-hidden="true"></i></i>&nbsp;SkillMock</h4></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+      <ul ng-if="home.logged() === 0" class="nav navbar-nav navbar-right"">
+        <li><a href="#/">Home</a></li>
+        <li><a href="#/Login">Log In</a></li>
+        <li><a href="#/Signup">Sign Up</a></li>
+      </ul>
+    <ul ng-if="home.logged() === 1" class="nav navbar-nav navbar-right">
+        <li><a href="">Dashboard</a></li>
+        <li class="dropdown">
+           <a data-toggle="dropdown" class="dropdown-toggle">Welcome !!!! {{home.username}}</a>
+          <ul class="dropdown-menu">
+            <li><a ng-click="home.logout()" style="color: blue">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+</div>
+</div>
+</nav>
+
+
+<br>
+
+        <!-- ng-view -->
+      <div class="wrapper ng-scope" ng-view ng-autoscroll="true">
+  </div>
+    <!-- ng-view -->
+
+<br/>
+<footer>
+    <div class="footer container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                    <h4>CopyRight &copy; SkillMock</h4>
+                      <br/>
+                      <h4>Created by Kousalya MV - All Rights Reserved</h4>
+                      <br/>
+                    <a href="https://github.com/kousalyamv"><i class="fa fa-github fa-fw fa-2x"></i></a> &nbsp;&nbsp;
+                    <a href="https://www.linkedin.com/in/kousalya-m-v-8072a4a2/"><i class="fa fa-linkedin fa-2x"></i></a> 
+                    <br/>
+        </div>
+    </div>
+    </div>
+</footer>
+</body>
+
+
+<script src="js/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+ <!-- AngularJS Modules -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+  <!-- for no html5 browsers support -->
+
+  <!-- angular scipts -->
+  <script type="text/javascript" src="angular/app.js"></script>
+  <script type="text/javascript" src="angular/routes/routes.js"></script>
+<!-- ng Services -->
+<script type="text/javascript" src="angular/services/testService.js"></script>
+<script type="text/javascript" src="angular/services/authService.js"></script>
+
+<!-- ng controllers -->
+<script type="text/javascript" src="angular/controllers/home.js"></script>
+<script type="text/javascript" src="angular/controllers/admin.js"></script>
+ <script type="text/javascript" src="angular/controllers/userDash.js"></script>
+<script type="text/javascript" src="angular/controllers/takeTest.js"></script>
+<script type="text/javascript" src="angular/controllers/liveTest.js"></script>
+</html>

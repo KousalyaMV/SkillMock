@@ -1,0 +1,50 @@
+<div class="container" ng-controller="adminCtrl as admin">
+<div class="row" id="allUserInfo" >
+<div class="col-md-12">
+  <div class="panel-group">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h2 align="center">Hello Admin ...Welcome to Skill Mock..</h2>
+          </div>
+          <div class="panel-body">
+            <br/>
+              <div class="container">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <a   class="btn btn-warning center-block" style="width:60%" ng-href="#/Admin/{{admin.userId}}"><h6><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back To Dashboard</h6></a>
+              </div>
+</div>
+</div>
+
+            </div><!-- panel body end -->
+              <br/>
+            </div><!-- panel end -->
+          </div><!-- panel group end-->
+        </div><!-- col end -->
+      </div><!-- row end -->
+         <div class="panel panel-info" id="pnlViewUserDet" ng-init="admin.getUserInfoforperformance()">
+          <div ng-if="admin.userInfo.length >0">
+          <div class="panel-heading">
+              <h2 align="center">View List of Users</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+             
+                <div align="center" ng-repeat="user in admin.userInfo track by $index">
+                            <div class="list-group" ng-show=user.name!='Admin' style="background-color:#CACFD2;border:5px solid black">
+
+                                 <label  class="list-group-item"><h6>ID: {{user._id}}</h6></label>
+                                <label  class="list-group-item"><h6>Name: {{user.name}}</h6></label>
+                                <label class=" list-group-item"><h6>Email:{{user.email}}</h6></label>
+                                <label class=" list-group-item"><h6>Mobile Number: {{user.mobileNumber}}</h6></label>
+                          </div>
+                        </div>
+                    </div><!-- col end -->
+            </div><!-- panel body end -->
+            </div><!-- panel div length  end-->
+         
+                 <div class="panel-heading" ng-if="admin.userInfo.length===0">
+              <h2 align="center">No Users login yet!!!</h2>
+          </div>
+           </div><!-- panel end -->
+          </div><!-- panel container end -->

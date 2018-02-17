@@ -1,0 +1,208 @@
+<style>
+.well {
+    color: blue;
+   background-color: #E8F8F5;
+}
+img {
+    height: 750px;
+    width: 750px;
+
+}
+  
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+</style>
+
+<div class="container" ng-controller="adminCtrl as admin">
+
+            <div class="container" id="btnBack">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <a   class="btn btn-warning center-block" style="width:60%" ng-href="#/Admin/{{admin.userId}}"><h6><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back To Dashboard</h6></a>
+              </div>
+            </div>
+          </div>
+               <div class="container" id="btnBackToTest">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <a   class="btn btn-warning center-block" style="width:65%"><h6><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back To Question Info</h6></a>
+              </div>
+</div>
+</div>
+<br/>
+<div class="row" id="dashAdminQuestion">
+<div class="col-md-12">
+  <div class="panel-group">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h2 align="center">Hello Admin ...Welcome to Skill Mock..</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12" align="center">
+              <br/>
+              <button class="btn btn-primary" id="btnCreateQues">Create Question</button>
+
+              <!-- <button class="btn btn-info" id="btnViewTest" data-toggle="modal" data-target="#myModal2">View Test</button> -->
+            </div>
+              <br/>
+            </div><!-- panel body end -->
+          </div><!-- panel end -->
+         <div class="panel panel-info" id="pnlViewQuestion" ng-init="admin.viewQuestions(admin.singleTestId)">
+          <div ng-if="admin.quesArray.length >0">
+          <div class="panel-heading">
+              <h2 align="center">View List of Questions</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+             
+                <div align="center">
+
+                            <h2 style="background-color:#A4B5D2;" ng-model="admin.singleTestName" align="center">Test Name: {{admin.singleTestName}}</h2>
+                            <div class="list-group" ng-repeat="question in admin.quesArray track by $index" style="background-color:#CACFD2;">
+                                <h5 class=" list-group-item">Question {{$index+1}}: {{question.question}}</h5>
+                                <label  class="list-group-item ">Options: 1){{question.optionA}}&nbsp;&nbsp;    2){{question.optionB}}&nbsp; &nbsp;3){{question.optionC}}&nbsp; &nbsp; 4){{question.optionD}}</label>
+                                <label class=" list-group-item">Answer: {{question.answer}}</label>
+                                 <Button class="form-control btn btn-active btn-danger" ng-click="admin.deleteAQuestion($index,question._id)" style="width:20%" >Delete</Button>
+                                  <button  id="btnupdateQuest" class="form-control btn btn-active btn-info"  style="width:20%" ng-click="admin.getSingleQuestionDet($index)">Update</button>
+                            </div>
+                        </div>
+                    </div>
+            </div><!-- panel body end -->
+            </div>
+         
+                 <div class="panel-heading" ng-if="admin.quesArray.length===0">
+              <h2 align="center">No Questions Created yet!!!...Please click on create questions to Insert...</h2>
+          </div>
+           </div><!-- panel end -->
+          </div><!-- panel group end -->
+        </div><!-- col grid end -->
+      </div><!-- row end -->
+
+<div class="row row-centered">
+  <div class="col-md-8 col-centered">
+    <div class="well well-lg" id="createQuestion">
+                                    <div>
+                                        <label for="id" ng-model="admin.singleTestId"></label>
+                                        <label ng-model="admin.singleQuesIndex"></label>
+                                        <label for="name"><h5>Test Name:</h5></label>
+                                        <label> {{admin.singleTestName}}</label>
+                                        
+                                    </div>
+                                     <form ng-submit="admin.createQuestions()">
+                                    <div class="form-group">
+                                        <label for="Question"><h5>Question :</h5></label>
+                                        <input type="text" name="Question" id="question"  ng-model="admin.question" class="form-control" placeholder="Please Enter Question..." value="" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option A</h5></label>
+                                        <input type="text" id="testCategory"  ng-model="admin.optionA" class="form-control" placeholder="Enter Option A" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option B</h5></label>
+                                        <input type="text" id="testCategory"  ng-model="admin.optionB" class="form-control" placeholder="Enter Option B" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option C</h5></label>
+                                        <input type="text"  id="testCategory" ng-model="admin.optionC" class="form-control" placeholder="Enter Option C" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option D</h5></label>
+                                        <input type="text" id="testCategory" ng-model="admin.optionD" class="form-control" placeholder="Enter Option D" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Question"><h5>Answer :</h5></label>
+                                        <input type="text"  id="answer"  ng-model="admin.answer" class="form-control" placeholder="Please Enter Answer To Question in terms of Value like 1,2,3 or 4"  required="true">
+                                    </div>
+                                      
+                                  <div class="form-control">
+                                      <Button type="submit"  class="form-control btn btn-active btn-info center-block">Submit</Button>
+                                  </div>
+                              </form>
+                              </div><!-- well end -->
+
+
+                              <div class="well well-lg" id="updateQuestion">
+                                    <div>
+                                        <label for="id" ng-model="admin.singleTestId"></label>
+                                        <label ng-model="admin.singleQuesIndex"></label>
+                                        <label for="name"><h5>Test Name:</h5></label>
+                                        <label> {{admin.singleTestName}}</label>
+                                        
+                                    </div>
+                                     <form ng-submit="admin.updateAQuestion(admin.singleQuesIndex)">
+                                    <div class="form-group">
+                                        <label for="Question"><h5>Question :</h5></label>
+                                        <input type="text" name="Question" id="question"  ng-model="admin.question" class="form-control" placeholder="Please Enter Question..." required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option A</h5></label>
+                                        <input type="text" id="optionA"  ng-model="admin.optionA" class="form-control" placeholder="Enter Option A" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option B</h5></label>
+                                        <input type="text" id="optionB"  ng-model="admin.optionB" class="form-control" placeholder="Enter Option B" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option C</h5></label>
+                                        <input type="text"  id="optionC" ng-model="admin.optionC" class="form-control" placeholder="Enter Option C" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="option"><h5>Option D</h5></label>
+                                        <input type="text" id="optionD" ng-model="admin.optionD" class="form-control" placeholder="Enter Option D" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Answer"><h5>Answer :</h5></label>
+                                        <input type="text"  id="answer"  ng-model="admin.answer" class="form-control" placeholder="Please Enter Answer To Question in terms of Value like 1,2,3 or 4"  required="true">
+                                    </div>
+                             
+                                  <div class="form-group">
+                                      <Button type="submit" class="form-control btn btn-active btn-warning center-block">Update</Button>
+                                  </div>
+                                </form>
+                              </div><!-- well end -->
+
+    </div><!-- col end -->
+  </div><!-- row end -->
+</div><!-- container end -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#createQuestion').hide();;
+      $('#updateQuestion').hide(); 
+       $('#btnBackToTest').hide();
+
+      $('#btnCreateQues').click(function(){
+        $('#createQuestion').show();
+          $('#dashAdminQuestion').hide();   
+           $('#btnBack').hide();
+          $('.form-control').val('');
+           $('#updateQuestion').hide(); 
+             $('#btnBackToTest').show();
+      });
+/*
+      $('#btnupdateQuest').click(function(){
+         $('#updateQuestion').show(); 
+          $('#dashAdminQuestion').hide();   
+             $('#createQuestion').hide(); 
+             $('#btnBackToTest').show();
+      });*/
+  
+      $('#btnBackToTest').click(function(){
+          $('#dashAdminQuestion').show();   
+           $('#createQuestion').hide();
+            $('#updateQuestion').hide();
+         $('#btnBack').show();
+         $('#btnBackToTest').hide();
+
+    });
+});
+</script> 

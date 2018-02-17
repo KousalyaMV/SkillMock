@@ -1,0 +1,73 @@
+
+<div class="container" ng-controller="liveTestCtrl as liveTest">
+ <div class="panel panel-info" id="quizContainer">
+          <div class="panel-heading">
+              <h2 align="center">Live Test</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+             <h4 align="center" id="quiz-time-left"></h4>
+                <div align="center">
+
+					<div class="title" style="text-align: center; font-weight:bold; font-size: 1.5em;" >{{liveTest.quizHeading}}</div>
+					<div id="question" class="question" style="font-size: 2em; font-weight: bold;"></div>
+					<label class="option"><input type="radio" name="option" value="1" /> <span  id="opt1"></span></label>
+					<label class="option"><input type="radio" name="option" value="2" /> <span  id="opt2"></span></label>
+					<label class="option"><input type="radio" name="option" value="3" /> <span  id="opt3"></span></label>
+					<label class="option"><input type="radio" name="option" value="4" /> <span  id="opt4"></span></label>
+					<button id="nextButton" class="next-btn" ng-click="liveTest.loadNextQuestion()">Next Question </button>
+                          </div>
+                            </div>
+                        </div>
+                    </div><!-- panel body end -->
+
+
+                    <div class="panel panel-info" id="userPerform" >
+          <div class="panel-heading" >
+              <h2 align="center">Test Performance</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+             <h4 align="center"></h4>
+                    <div style="background-color:#A4B5D2;" class="modal-body" class="list-group">
+                            <label class=" list-group-item"><h4>User ID: {{liveTest.performanceUserID}}</h4></label>
+                            <label class=" list-group-item"><h4>Test Correct Answers: {{liveTest.answerscorrect}}</h4></label><label class=" list-group-item"><h4>Score Secured: {{liveTest.securedscore}}</h4></label>
+                            <label class=" list-group-item"><h4>Total Time Taken: {{liveTest.timeTaken}}</h4></label>
+          </div>
+         
+          <div class="panel-footer">
+              <a type="button" class="btn btn-danger" ng-href="#/takeTest/{{liveTest.userId}}">Close</a>
+          </div>
+      </div>
+  </div>
+</div><!-- modal -->
+            </div>
+
+
+
+  <div class="modal fade testInstructions" id="testInstructions" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div style="background-color: skyblue;"  class="modal-header">
+                        <h4 align="center" class="modal-title"><span style="color:white;">Please Read The instructions Carefully</span></h4>
+                    </div>
+                    <div class="modal-body">
+                   <ol>
+                   <li>You will be alloted 5 Minutes to avail Test</li>
+                   <li>Once time over the test window will close atomatically and calculate the test score based on questions attended </li>
+                   <li>You can't go back after submitting the Answer for each Question.</li>
+                   <li>you can submit the Test before the time is over</li>
+                   <li>If you are ok with all the conditions ...Please go ahead and click on start to Start Test.</li> 
+                   </ol>
+                   <h3 align="center"><strong><em>Best Of Luck</em></strong></h3>
+                    </div>
+                    <div style="background-color: skyblue;"  class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="liveTest.loadQuestion(0)">Start Test</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-danger" id="returntotaketest">Return</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+ 

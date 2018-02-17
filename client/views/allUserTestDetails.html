@@ -1,0 +1,99 @@
+<div class="container" ng-controller="adminCtrl as admin">
+<div class="row" id="allUserInfo" >
+<div class="col-md-12">
+  <div class="panel-group">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h2 align="center">Hello Admin ...Welcome to Skill Mock..</h2>
+          </div>
+          <br/>
+          <div class="panel-body">
+              <div class="container">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <a   class="btn btn-warning center-block" style="width:60%" ng-href="#/Admin/{{admin.userId}}"><h5><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back To Dasboard</h5></a>
+              </div>
+</div>
+</div>
+
+            </div><!-- panel body end -->
+              <br/>
+            </div><!-- panel end -->
+          </div><!-- panel group end-->
+        </div><!-- col end -->
+      </div><!-- row end -->
+         <div class="panel panel-info" id="pnlViewUserDet" ng-init="admin.getUserInfoforperformance()">
+          <div ng-if="admin.userInfo.length >0">
+          <div class="panel-heading">
+              <h2 align="center">View List of Users</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+             
+                <div align="center" ng-repeat="user in admin.userInfo track by $index">
+                            <div class="list-group" ng-show=user.name!='Admin' style="background-color:#CACFD2;border:5px solid black">
+
+                                 <label  class="list-group-item"><h6>ID: {{user._id}}</h6></label>
+                                <label  class="list-group-item"><h6>Name: {{user.name}}</h6></label>
+                                <label class=" list-group-item"><h6>Email:{{user.email}}</h6></label>
+                                <label class=" list-group-item"><h6>Mobile Number: {{user.mobileNumber}}</h6></label>
+                                <button class="btn btn-info" id= "btnViewPerform" ng-click="admin.getUserPerformanceDet(user._id)"><h5>View Performance</h5></button>
+                          </div>
+                        </div>
+                    </div><!-- col end -->
+            </div><!-- panel body end -->
+            </div><!-- panel div length  end-->
+         
+                 <div class="panel-heading" ng-if="admin.userInfo.length===0">
+              <h2 align="center">No Users login yet!!!</h2>
+          </div>
+           </div><!-- panel end -->
+
+           <div class="panel panel-info" id="pnlViewUserTestDet">
+                        <div class="container">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <a   class="btn btn-warning center-block" style="width:70%" id="btnBackToUserInfo"><h5><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back To User Info</h5></a>
+              </div>
+</div>
+</div>
+          <div ng-if="admin.userTestPerform.length >0">
+          <div class="panel-heading">
+              <h2 align="center">View List of Users</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+             
+                <div align="center">
+                            <div class="list-group" ng-repeat="userTest in admin.userTestPerform track by $index" style="background-color:#CACFD2;border:5px solid black">
+                             
+                                 <label  class="list-group-item"  style="background-color:#91B2FF;" ><h5>Test Name: {{userTest.testName}}</h5></label>
+                                <label  class="list-group-item"><h5>Score: {{userTest.score}}</h5></label>
+                                <label class=" list-group-item"  style="background-color:#91B2FF;"><h5>Total Correct Answer:{{userTest.totalCorrectAnswers}}</h5></label>
+                                <label class=" list-group-item"><h5>Total Wrong Answer: {{userTest.totalWrongAnswers}}</h5></label>
+                                 <label class="list-group-item"  style="background-color:#91B2FF;"><h5>Test Taken Date: {{userTest.testTakenDateTime | date: "MMM dd,y"}} at {{userTest.testTakenDateTime | date: "HH:mm"}}</h5></label>
+                            </div>
+                        </div>
+                    </div><!-- col end -->
+            </div><!-- panel body end -->
+            </div><!-- panel div length  end-->
+         
+                 <div class="panel-heading" ng-if="admin.userTestPerform.length===0">
+              <h2 align="center">No Test attended yet!!!</h2>
+          </div>  
+           </div><!-- panel end -->
+
+
+
+          </div><!-- panel container end -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#pnlViewUserTestDet').hide();
+      $('#btnBackToUserInfo').click(function(){
+          $('#pnlViewUserTestDet').hide();
+       $('#pnlViewUserDet').show(); 
+       $('#allUserInfo').show(); 
+    });
+ 
+});
+</script> 

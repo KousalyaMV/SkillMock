@@ -1,0 +1,47 @@
+
+<div class="container" ng-controller="takeTestCtrl as takeTest">
+  <div class="panel-group">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h2 align="center">Hello...Welcome to Skill Mock..</h2>
+          </div>
+          <br/>
+           <div class="container"  id="btnBack">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <a ng-href="#/dashboard/{{takeTest.userId}}"  class="btn btn-warning center-block" style="width:30%"><h5><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back</h5></a>
+              </div> 
+    </div>
+  </div>  
+          <div class="panel-body">
+            <div class="col-md-12" align="center">
+  <h3>List of Test Available</h3>
+  <hr>
+
+<div class="row" id="viewTest" ng-init="takeTest.getTests()">
+ <div class="col-md-6" ng-repeat="test in takeTest.testArray track by $index">
+  <div class="panel panel-primary">
+      <div class="panel-heading clearfix" align="center">
+          <h4  align="center">{{test.testName}}</h4>
+      </div><!-- panel header end -->
+      <div class="panel-body">
+          <img align="center" src="img/TakeTest.jpg" style="height:45vh;width:80vh" class="img-fluid img-responsive" alt="Responsive image" />
+      </div><!-- panel body end -->
+     <div class="panel-footer clearfix">      
+          <h5 align="center"> <a class="btn btn-primary   pull-center" id="btnQuestion" ng-href="#/liveTestFetch/{{test._id}}/{{takeTest.userId}}">Take Test</a></h5>
+         </div> <!-- panel footer end -->
+   </div><!-- panel close-->
+ </div>
+</div><!-- row end -->
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+
+
+</div>

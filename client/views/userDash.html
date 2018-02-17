@@ -1,0 +1,230 @@
+
+<style>
+.well {
+    color: blue;
+   background-color: #E8F8F5;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+</style>
+<div ng-controller="userDashCtrl as dashboard">
+<div class="container" >
+<div class="row" id="userDash">
+<div class="col-md-12">
+  <div class="panel-group">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h2 align="center">Hello...Welcome to Skill Mock..</h2>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12" align="center">
+              <br/>
+              <a class="btn btn-primary" id="btnTakeTest"  ng-href="#/takeTest/{{dashboard.userId}}"><h5>Take Test</h5></a>
+              &nbsp;&nbsp;  <button class="btn btn-primary" id="btnUserPerformance" data-testid=" {{dashboard.testtakenDetailsforgraph}} " data-user="{{dashboard.testtakenDetailslabels}}"><h6>View Performance</h6></button>
+            </div>
+              <div class="row" style="padding-top: 80px">
+                <div class="col-md-6 col-md-offset-3">
+                   <div class="panel panel-primary">
+            <div class="panel-heading">
+            <h1 class="panel-title" align="center">User Test Info</h1>
+            </div><!-- panel header end -->
+            <div class="panel-body">
+           <h5 align="center">Tests Taken: {{dashboard.testtaken}}</h5>
+
+           <h5 align="center">Average Score: {{dashboard.averagemarks}}</h5>
+            </div><!-- panel body end -->
+            </div><!-- panel close-->
+                </div>
+              </div>
+              <br/>
+
+            <div class="row" id="pnlchart">
+             <div class="col-md-12">
+            <div class="panel panel-primary" align="center">
+            <div class="panel-heading">
+            <h1 class="panel-title" align="center">User Performance</h1>
+            </div><!-- panel header end -->
+            <div class="panel-body">
+             
+           <canvas   id="myChart"></canvas>
+            </div><!-- panel body end -->
+            
+            <div class="panel-footer" align="center">
+            <button class="btn btn-primary" id="btnClose" ng-click=""><i class="fa fa-times" aria-hidden="true"></i>  Close</button>
+          </div>
+            </div><!-- panel close-->
+          </div>
+        </div>
+          <br/>
+             <div class="row row-centered">
+            <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+            <h1 class="panel-title" align="center">Test Details</h1>
+            </div><!-- panel header end -->
+            <div class="panel-body">
+           <p> <img align="center" src="img/UserKnowlege.jpg" class="img-responsive" alt="Responsive image"></p>
+            </div><!-- panel body end -->
+            <div class="panel-footer" align="center">
+            <button class="btn btn-primary" id="btnViewTest"><h7>View Test Taken Details</h7></button>
+            </div> <!-- panel footer end -->
+            </div><!-- panel close-->
+            </div>
+          </div>
+            <br/>
+          </div>
+          <!-- panel body end -->
+      </div>
+      <!-- panel  end -->
+    </div> <!--panel  group  end-->
+      
+  </div>
+  <!-- Col class -->
+</div>
+<!-- row end -->
+  
+  
+<br/>
+
+<div class="container" id="pnlViewUserTestDetails">        
+   <div class="panel panel-info" id="pnlViewQuestion">
+    <br/>
+       <div class="container"  id="btnBack">
+    <div class="row">
+      <div  class= "col-md-4" align="left" >
+               <Button   class="btn btn-warning center-block" style="width:30%"><h5><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;Back</h5></Button>
+              </div> 
+    </div>
+  </div>  
+          <div ng-if="dashboard.testtakenDetails.length >0">
+          <div class="panel-heading">
+              <h4 align="center">View List of Test Taken Details</h4>
+          </div>
+          <div class="row">
+             <div class="col-md-12">
+          <div class="panel-body">
+            
+                <div align="left" style="background-color:#CACFD2;" >
+                            <div class="list-group" ng-repeat="userTest in dashboard.testtakenDetails" style="background-color:#e5fff4;">
+                                <h5 class=" list-group-item" style="background-color:#e5fff4;">Test Name: {{userTest.testName}}</h5>
+                                <label class="list-group-item ">Correct Ans: {{userTest.totalCorrectAnswers}}</label>
+                                <label class="list-group-item " style="background-color:#e5fff4;">Wrong Ans: {{userTest.totalWrongAnswers}}</label>
+                                <label class="list-group-item"> Score: {{userTest.score}}</label>
+                                <label class="list-group-item" style="background-color:#e5fff4;"> Total Time Taken: {{userTest.timeTaken}} Seconds</label>
+                                 <label class="list-group-item"> Test Taken Date: {{userTest.testTakenDateTime | date: "MMM dd,y"}} at {{userTest.testTakenDateTime | date: "HH:mm"}}</label>
+                                
+                            </div>
+                        </div>
+                     
+            </div><!-- panel body end -->
+             </div>
+          </div><!-- row end -->
+            </div>
+         
+                 <div class="panel-heading" ng-if="dashboard.testtakenDetails.length===0">
+              <h2 align="center">No Test taken yet!!!...</h2>
+          </div>
+           </div><!-- panel end -->
+          </div><!-- panel group end -->
+              </div> <!-- controller div end   -->
+
+<script type="text/javascript">
+ 
+
+
+  $(document).ready(function(){
+     $( "#pnlchart" ).hide();
+    
+     $( "#btnUserPerformance" ).show();
+       $('#pnlViewUserTestDetails').hide();
+        $( "#btnUserPerformance" ).show();
+       $('#btnBack').hide();
+      $('#btnViewTest').click(function(){
+          $('#pnlViewUserTestDetails').show();
+          $('#userDash').hide();
+           $('#btnBack').show();
+      });
+  
+      $('#btnClose').click(function(){
+         $('#pnlViewUserTestDetails').hide();
+          $('#userDash').show();
+          $('#btnBack').hide();
+           $( "#pnlchart" ).hide();
+           $( "#btnUserPerformance" ).show();
+    });
+      $('#btnBack').click(function(){
+         $('#pnlViewUserTestDetails').hide();
+          $('#userDash').show();
+          $('#btnBack').hide();
+           $( "#pnlchart" ).hide();
+           $( "#btnUserPerformance" ).show();
+    });
+
+       var dat = [];
+
+var label = [];
+  $('#btnUserPerformance').click(function() {
+     $( "#pnlchart" ).show();
+    
+     $( "#btnUserPerformance" ).hide();
+               var Id = $(this).data('testid');
+                var testname = $(this).data('user');
+                if(dat.length == 0)
+                {
+                for(var i=0;i<Id.length;i++)
+                {
+                  
+                  dat.push(Id[i]);
+                
+                }
+              }
+ 
+
+                if(label.length == 0)
+                  {
+                for(var i=0;i<testname.length;i++)
+                {
+                  
+                  label.push(testname[i]);
+                }
+                }
+
+              var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: label,
+        datasets: [{
+            label: 'Performance Graph Of Tests Given',
+            data: dat,
+             backgroundColor: 'rgb(78, 216, 202)',//'rgb(255, 99, 132)',
+            borderColor: 'rgb(78, 216, 202)' //'rgb(255, 99, 132)'
+            ,borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+            });
+});
+
+
+ 
+</script> 
